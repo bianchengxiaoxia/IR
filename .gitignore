@@ -1,0 +1,5 @@
+# 忽略 NANKAIIR/visited_links.json
+NANKAIIR/visited_links.json
+
+# 忽略 NANKAIIR/scraped_pages 文件夹
+NANKAIIR/scraped_pages/
