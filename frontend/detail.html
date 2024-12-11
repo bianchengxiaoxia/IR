@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>详细信息</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+        text-align: center;
+        color: #0066cc;
+        margin-bottom: 20px;
+    }
+
+    .metadata {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+        background-color: #f1f1f1;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .metadata div {
+        margin-bottom: 5px;
+    }
+
+    .content {
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .attachments, .contact-info {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+    }
+
+    .attachments h3, .contact-info h3 {
+        margin-top: 0;
+        font-size: 18px;
+        color: #0066cc;
+    }
+
+    .attachments ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .attachments li {
+        margin-bottom: 8px;
+    }
+
+    .attachments a {
+        color: #0066cc;
+        text-decoration: none;
+    }
+
+    .attachments a:hover {
+        text-decoration: underline;
+    }
+
+    .contact-info div {
+        margin-bottom: 8px;
+    }
+
+    img {
+        max-width: 100%;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>详细信息</h1>
+        <div class="metadata" id="metadata"></div>
+        <div class="content" id="content"></div>
+        <div class="contact-info" id="contactInfo"></div>
+        <div class="attachments" id="attachments"></div>
+    </div>
+
+    <script>
+        // 获取 URL 参数中的 'url'
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        const docUrl = getQueryParam('url');
+        if (!docUrl) {
+            alert("缺少文档 URL 参数");
+            window.location.href = "index.html";
+        }
+
+        // 发送请求获取详细信息
+        fetch(`http://localhost:5000/detail?url=${encodeURIComponent(docUrl)}`, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                document.getElementById('metadata').innerHTML = `<p>${data.error}</p>`;
+                return;
+            }
+            displayDetail(data);
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            document.getElementById('metadata').innerHTML = `<p>请求出现错误，请检查控制台。</p>`;
+        });
+
+        function displayDetail(data) {
+            // 显示元数据
+            let metadataHtml = '';
+            if (data.publish_time) {
+                metadataHtml += `<div><strong>发布时间：</strong>${data.publish_time}</div>`;
+            }
+            if (data.publisher) {
+                metadataHtml += `<div><strong>发布单位：</strong>${data.publisher}</div>`;
+            }
+            if (data.source) {
+                metadataHtml += `<div><strong>来源：</strong>${data.source}</div>`;
+            }
+            if (data.views !== undefined && data.views !== null) {
+                metadataHtml += `<div><strong>浏览量：</strong>${data.views}</div>`;
+            }
+            if (data.pagerank) {
+                metadataHtml += `<div><strong>PageRank：</strong>${data.pagerank}</div>`;
+            }
+            document.getElementById('metadata').innerHTML = metadataHtml;
+
+            // 显示内容
+            let content = data.content || "";
+
+            // 删除数字前后的换行符，但保留句号（。）或感叹号（！）前的换行符
+            content = content.replace(/(?<![。！;；）)])(\n|\r)?(\d+)(\n|\r)?/g, '$2');
+
+            // 删除非结尾标点符号（如逗号、顿号）前后的换行符
+            content = content.replace(/(\n|\r)?([，、)）+ :._/])(\n|\r)?/g, '$2');
+
+            // 删除结尾标点符号（如句号、感叹号、问号）前的换行符
+            content = content.replace(/(\n|\r)+([。！？.）)])/g, '$2');
+            //
+            // 删除结尾标点符号（如句号、感叹号、问号）后的换行符
+            content = content.replace(/([（(])(\n|\r)+/g, '$1');
+
+
+            // 显示正文内容
+            document.getElementById('content').innerHTML = content.replace(/\n/g, '<br>');
+
+            // 插入图片到文章最后
+            const images = data.images || [];
+            if (images.length > 0) {
+                let imagesHtml = '<h3>图片：</h3>';
+                images.forEach(img => {
+                    imagesHtml += `<img src="${img}" alt="" onerror="this.style.display='none';" />`;
+                });
+                // 在内容后追加图片
+                document.getElementById('content').innerHTML += imagesHtml;
+            }
+
+            // 显示附件
+            const attachments = data.attachments || [];
+            if (attachments.length > 0) {
+                let attachmentsHtml = '<h3>附件：</h3><ul>';
+                attachments.forEach(att => {
+                    attachmentsHtml += `<li><a href="${att.url}" target="_blank">${att.name}</a></li>`;
+                });
+                attachmentsHtml += '</ul>';
+                document.getElementById('attachments').innerHTML = attachmentsHtml;
+            } else {
+                document.getElementById('attachments').innerHTML = '';
+            }
+
+            // 显示联系人信息
+            const contactInfo = data.contact_info || {};
+            let contactHtml = '<h3>联系人信息：</h3>';
+            if (contactInfo.contact_person) {
+                contactHtml += `<div><strong>联系人：</strong>${contactInfo.contact_person}</div>`;
+            }
+            if (contactInfo.phone) {
+                contactHtml += `<div><strong>电话：</strong>${contactInfo.phone}</div>`;
+            }
+            if (contactInfo.email) {
+                contactHtml += `<div><strong>邮箱：</strong><a href="mailto:${contactInfo.email}">${contactInfo.email}</a></div>`;
+            }
+            if (contactInfo.address) {
+                contactHtml += `<div><strong>地址：</strong>${contactInfo.address}</div>`;
+            }
+            if (contactHtml === '<h3>联系人信息：</h3>') {
+                contactHtml += '<div>无联系人信息</div>';
+            }
+            document.getElementById('contactInfo').innerHTML = contactHtml;
+        }
+
+    </script>
+</body>
+</html>

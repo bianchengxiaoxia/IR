@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>统一搜索系统</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #0066cc;
+            text-align: center;
+        }
+        .search-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .search-mode {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        .search-mode-btn {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .search-mode-btn.active {
+            background-color: #0066cc;
+            color: white;
+        }
+        .search-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .search-form input, .search-form select {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .search-form button {
+            padding: 10px 15px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .search-form button:hover {
+            background-color: #005ab3;
+        }
+        #docTypeContainer {
+            display: none;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .result-item {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .result-item h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .result-item .snippet {
+            color: #666;
+            margin-top: 10px;
+        }
+        .result-metadata {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 10px;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        .pagination button {
+            padding: 8px 15px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .pagination button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>统一搜索系统</h1>
+
+    <div class="search-container">
+        <div class="search-mode">
+            <button id="normalSearchBtn" class="search-mode-btn active">普通搜索</button>
+            <button id="documentSearchBtn" class="search-mode-btn">文档搜索</button>
+        </div>
+
+        <form id="searchForm" class="search-form">
+            <input type="text" id="searchInput" placeholder="输入搜索关键词..." required>
+            <div id="docTypeContainer">
+                <select id="docTypeSelect">
+                    <option value="">选择文档类型</option>
+                    <option value="doc">Word文档 (.doc)</option>
+                    <option value="docx">Word文档 (.docx)</option>
+                    <option value="pdf">PDF文档 (.pdf)</option>
+                    <option value="xls">Excel文档 (.xls)</option>
+                    <option value="xlsx">Excel文档 (.xlsx)</option>
+                </select>
+            </div>
+            <button type="submit">搜索</button>
+        </form>
+    </div>
+
+    <div id="resultsContainer" class="results"></div>
+
+    <div id="paginationContainer" class="pagination" style="display:none;">
+        <button id="prevPageBtn">上一页</button>
+        <span id="pageInfo"></span>
+        <button id="nextPageBtn">下一页</button>
+    </div>
+
+    <script>
+        const normalSearchBtn = document.getElementById('normalSearchBtn');
+        const documentSearchBtn = document.getElementById('documentSearchBtn');
+        const docTypeContainer = document.getElementById('docTypeContainer');
+        const searchForm = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
+        const docTypeSelect = document.getElementById('docTypeSelect');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const paginationContainer = document.getElementById('paginationContainer');
+        const prevPageBtn = document.getElementById('prevPageBtn');
+        const nextPageBtn = document.getElementById('nextPageBtn');
+        const pageInfo = document.getElementById('pageInfo');
+
+        let currentSearchMode = 'normal';
+        let currentQuery = '';
+        let currentPage = 1;
+        let totalPages = 0;
+
+        // 搜索模式切换
+        normalSearchBtn.addEventListener('click', () => {
+            currentSearchMode = 'normal';
+            normalSearchBtn.classList.add('active');
+            documentSearchBtn.classList.remove('active');
+            docTypeContainer.style.display = 'none';
+            docTypeSelect.value = ''; // 清空文档类型选择
+        });
+
+        documentSearchBtn.addEventListener('click', () => {
+            currentSearchMode = 'document';
+            documentSearchBtn.classList.add('active');
+            normalSearchBtn.classList.remove('active');
+            docTypeContainer.style.display = 'block';
+        });
+
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            currentQuery = searchInput.value.trim();
+            currentPage = 1;
+            performSearch();
+        });
+
+        prevPageBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                performSearch();
+            }
+        });
+
+        nextPageBtn.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const query = currentQuery;
+            const url = new URL('http://localhost:5000/search');
+
+            // 公共参数
+            url.searchParams.set('query', query);
+            url.searchParams.set('page', currentPage);
+
+            // 根据搜索模式添加文档类型参数
+            if (currentSearchMode === 'document') {
+                const docType = docTypeSelect.value;
+                if (!docType) {
+                    alert('请选择文档类型');
+                    return;
+                }
+                url.searchParams.set('file_type', docType);
+            }
+
+            fetch(url.toString())
+                .then(response => response.json())
+                .then(data => {
+                    displayResults(data);
+                })
+                .catch(error => {
+                    console.error('搜索出错:', error);
+                    resultsContainer.innerHTML = '<p>搜索出现错误，请稍后重试。</p>';
+                });
+        }
+
+        function displayResults(data) {
+            // 清空previous结果
+            resultsContainer.innerHTML = '';
+
+            // 如果没有结果
+            if (!data.hits || data.hits.length === 0) {
+                resultsContainer.innerHTML = '<p>没有找到匹配的结果。</p>';
+                paginationContainer.style.display = 'none';
+                return;
+            }
+
+            // 渲染结果
+            data.hits.forEach(hit => {
+                const resultDiv = document.createElement('div');
+                resultDiv.className = 'result-item';
+
+                // 构建结果显示内容
+                let resultContent = `
+                    <h3><a href="${hit.url}" target="_blank">${hit.title || '无标题'}</a></h3>
+                    <p class="snippet">${hit.snippet}</p>
+                `;
+
+                // 如果是文档搜索模式，强调显示附件信息
+                if (currentSearchMode === 'document' && hit.attachments && hit.attachments.length > 0) {
+                    const attachmentsList = hit.attachments.map(att =>
+                        `<a href="${att.url}" target="_blank">${att.name} (${att.type})</a>`
+                    ).join(', ');
+                    resultContent += `<div class="result-metadata">相关文档: ${attachmentsList}</div>`;
+                }
+
+                // 添加其他元数据
+                resultContent += `
+                    <div class="result-metadata">
+                        ${hit.publisher ? `发布者: ${hit.publisher} | ` : ''}
+                        ${hit.publish_time ? `发布时间: ${hit.publish_time} | ` : ''}
+                        浏览量: ${hit.views || '未知'}
+                    </div>
+                `;
+
+                resultDiv.innerHTML = resultContent;
+                resultsContainer.appendChild(resultDiv);
+            });
+
+            // 更新分页信息
+            totalPages = data.total_pages;
+            pageInfo.textContent = `第 ${data.page} 页，共 ${data.total} 条结果`;
+
+            // 显示/隐藏分页容器
+            paginationContainer.style.display = data.total > 0 ? 'flex' : 'none';
+
+            // 控制分页按钮状态
+            prevPageBtn.disabled = currentPage <= 1;
+            nextPageBtn.disabled = currentPage >= totalPages;
+        }
+    </script>
+</body>
+</html>
