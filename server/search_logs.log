@@ -1,0 +1,2539 @@
+2024-12-12 12:47:39,882 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('fba7759b-dcde-40d8-9c9f-c9c2561d1cde',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 269, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('fba7759b-dcde-40d8-9c9f-c9c2561d1cde',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:47:40,640 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('66107876-8bfa-4699-a5f1-3dd735550306',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 269, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('66107876-8bfa-4699-a5f1-3dd735550306',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:47:41,083 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('4256a4d6-e01a-400e-8dc0-efdd9c2d1a9d',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 269, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('4256a4d6-e01a-400e-8dc0-efdd9c2d1a9d',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:47:41,350 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('064b9525-7169-4855-b6f2-92e5e6fae791',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 269, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('064b9525-7169-4855-b6f2-92e5e6fae791',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:47:41,412 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('97931d83-374e-4113-a9ae-67e7be74815a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 269, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('97931d83-374e-4113-a9ae-67e7be74815a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:47:41,676 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('6fdbf814-7a38-4898-a3ff-d2d145991cb8',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 269, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('6fdbf814-7a38-4898-a3ff-d2d145991cb8',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:47:41,736 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('d4415952-a171-4ac8-ad37-97f9e015ff3a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 269, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('d4415952-a171-4ac8-ad37-97f9e015ff3a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:47:42,002 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('0234594a-7387-4acc-94d4-0748ac2248fd',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 269, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('0234594a-7387-4acc-94d4-0748ac2248fd',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:47:42,863 - ERROR - Failed to log query to database: (sqlite3.OperationalError) table search_history has no column named search_query
+[SQL: INSERT INTO search_history (user_id, search_query, search_mode, file_type, sort_field, sort_order, page, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('53c1bf65-4c15-436f-9874-63d3502cb708', '南开', 'normal', None, None, 'desc', 1, '2024-12-12 04:47:42.862384')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: table search_history has no column named search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 77, in log_query_to_database
+    db.session.commit()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\scoping.py", line 597, in commit
+    return self._proxied.commit()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4352, in flush
+    self._flush(objects)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4487, in _flush
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4448, in _flush
+    flush_context.execute()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) table search_history has no column named search_query
+[SQL: INSERT INTO search_history (user_id, search_query, search_mode, file_type, sort_field, sort_order, page, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('53c1bf65-4c15-436f-9874-63d3502cb708', '南开', 'normal', None, None, 'desc', 1, '2024-12-12 04:47:42.862384')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:47:42,876 - INFO - User 53c1bf65-4c15-436f-9874-63d3502cb708 searched: 南开, mode=normal, file_type=, page=1, IP=127.0.0.1
+2024-12-12 12:47:43,063 - ERROR - Elasticsearch search error: AuthenticationException(401, 'security_exception', 'unable to authenticate user [elastic] for REST request [/web_pages/_search]')
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 217, in search
+    res = es.search(index="web_pages", body=body)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\elasticsearch\_sync\client\utils.py", line 455, in wrapped
+    return api(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\elasticsearch\_sync\client\__init__.py", line 4219, in search
+    return self.perform_request(  # type: ignore[return-value]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\elasticsearch\_sync\client\_base.py", line 271, in perform_request
+    response = self._perform_request(
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\elasticsearch\_sync\client\_base.py", line 352, in _perform_request
+    raise HTTP_EXCEPTIONS.get(meta.status, ApiError)(
+elasticsearch.AuthenticationException: AuthenticationException(401, 'security_exception', 'unable to authenticate user [elastic] for REST request [/web_pages/_search]')
+2024-12-12 12:47:44,680 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('87812b0c-148c-4367-b51b-257660c3abb6',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 269, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('87812b0c-148c-4367-b51b-257660c3abb6',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:47:48,485 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('21d1126e-7136-4c51-b400-db423cc5cdfc',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 269, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('21d1126e-7136-4c51-b400-db423cc5cdfc',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:48:31,852 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('7b4ae47a-329d-4b28-8b6e-07912cb688bc',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 267, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('7b4ae47a-329d-4b28-8b6e-07912cb688bc',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:49:12,096 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('2eb3fec6-675c-44ba-a1d1-3afedd0ec131',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('2eb3fec6-675c-44ba-a1d1-3afedd0ec131',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:49:12,427 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('fb1e8f66-c308-4d79-88bf-fee1c822c35a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('fb1e8f66-c308-4d79-88bf-fee1c822c35a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:49:12,898 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('a095c28f-d3bb-41b4-bf10-69824e5f4a6c',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('a095c28f-d3bb-41b4-bf10-69824e5f4a6c',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:49:13,163 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('46c72bfc-673d-4070-b5d6-a68c82a9aafb',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('46c72bfc-673d-4070-b5d6-a68c82a9aafb',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:49:13,224 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('5182d0f4-bf48-44ce-bed6-c31752631ce3',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('5182d0f4-bf48-44ce-bed6-c31752631ce3',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:49:13,489 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('d40759c7-7beb-4ba8-9919-c434ae173a3c',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('d40759c7-7beb-4ba8-9919-c434ae173a3c',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:49:13,534 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('112214b9-5ed2-43ad-badb-e70bd5fc8194',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('112214b9-5ed2-43ad-badb-e70bd5fc8194',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:49:13,798 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('d9f63710-97e8-473a-97d8-fa48d759570a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('d9f63710-97e8-473a-97d8-fa48d759570a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:49:14,921 - ERROR - Failed to log query to database: (sqlite3.OperationalError) table search_history has no column named search_query
+[SQL: INSERT INTO search_history (user_id, search_query, search_mode, file_type, sort_field, sort_order, page, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('d095d3e9-572f-4f5f-95f5-b75325c2df54', '南开', 'normal', None, None, 'desc', 1, '2024-12-12 04:49:14.919944')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: table search_history has no column named search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 77, in log_query_to_database
+    db.session.commit()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\scoping.py", line 597, in commit
+    return self._proxied.commit()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4352, in flush
+    self._flush(objects)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4487, in _flush
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4448, in _flush
+    flush_context.execute()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) table search_history has no column named search_query
+[SQL: INSERT INTO search_history (user_id, search_query, search_mode, file_type, sort_field, sort_order, page, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('d095d3e9-572f-4f5f-95f5-b75325c2df54', '南开', 'normal', None, None, 'desc', 1, '2024-12-12 04:49:14.919944')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 12:49:14,929 - INFO - User d095d3e9-572f-4f5f-95f5-b75325c2df54 searched: 南开, mode=normal, file_type=, page=1, IP=127.0.0.1
+2024-12-12 16:27:34,280 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('3a8bae73-1326-4272-a851-0b38c47a7c5c',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('3a8bae73-1326-4272-a851-0b38c47a7c5c',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:34,547 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('1d55154a-7db9-4893-b36c-1b517ae5b81a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('1d55154a-7db9-4893-b36c-1b517ae5b81a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:34,952 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('a785e580-b98b-4fd1-8629-f48983514232',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('a785e580-b98b-4fd1-8629-f48983514232',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:35,207 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('4461d4c6-142a-46de-a85e-73da0a963ac7',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('4461d4c6-142a-46de-a85e-73da0a963ac7',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:35,272 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('3f5de65e-c280-4221-8865-70c18898818f',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('3f5de65e-c280-4221-8865-70c18898818f',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:35,529 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('850c7707-a924-4307-b6ff-71758540bc1d',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('850c7707-a924-4307-b6ff-71758540bc1d',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:35,592 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('fda26a55-9089-4abd-9ccb-7c2f297f9dae',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('fda26a55-9089-4abd-9ccb-7c2f297f9dae',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:35,841 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('2413d946-a2ee-458c-adf9-f55568382d15',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('2413d946-a2ee-458c-adf9-f55568382d15',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:35,905 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('ab1392fc-0767-475a-bdfe-97501e5d0d9e',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('ab1392fc-0767-475a-bdfe-97501e5d0d9e',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:36,152 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('5d16a630-bbc9-4d83-ad9a-895d3893b4f5',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('5d16a630-bbc9-4d83-ad9a-895d3893b4f5',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:36,213 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('3a2072f3-dc80-40fe-bbaf-72810dc8d1b8',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('3a2072f3-dc80-40fe-bbaf-72810dc8d1b8',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:36,464 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('b123b8e6-83f8-4099-a05b-02c4bf4ad6fe',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('b123b8e6-83f8-4099-a05b-02c4bf4ad6fe',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:36,526 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('ef91dad1-caea-43b4-963a-8415d23256a6',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('ef91dad1-caea-43b4-963a-8415d23256a6',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:36,792 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('f810382d-94cc-46a7-b248-6c40f00c46c6',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('f810382d-94cc-46a7-b248-6c40f00c46c6',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:37,064 - ERROR - Unhandled exception: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('08e31397-0c19-4388-9a2c-5a33f69695f7',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: search_history.search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 92, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\信息检索系统大作业\server\app.py", line 266, in query_history
+    history_entries = SearchHistory.query.filter_by(user_id=user_id).order_by(SearchHistory.timestamp.desc()).all()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2362, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: search_history.search_query
+[SQL: SELECT search_history.id AS search_history_id, search_history.user_id AS search_history_user_id, search_history.search_query AS search_history_search_query, search_history.search_mode AS search_history_search_mode, search_history.file_type AS search_history_file_type, search_history.sort_field AS search_history_sort_field, search_history.sort_order AS search_history_sort_order, search_history.page AS search_history_page, search_history.timestamp AS search_history_timestamp 
+FROM search_history 
+WHERE search_history.user_id = ? ORDER BY search_history.timestamp DESC]
+[parameters: ('08e31397-0c19-4388-9a2c-5a33f69695f7',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:38,833 - ERROR - Failed to log query to database: (sqlite3.OperationalError) table search_history has no column named search_query
+[SQL: INSERT INTO search_history (user_id, search_query, search_mode, file_type, sort_field, sort_order, page, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('153b743b-a4b4-46d4-8133-b38404531c2f', '南开大虚', 'normal', None, None, 'desc', 1, '2024-12-12 08:27:38.831384')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: table search_history has no column named search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 77, in log_query_to_database
+    db.session.commit()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\scoping.py", line 597, in commit
+    return self._proxied.commit()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4352, in flush
+    self._flush(objects)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4487, in _flush
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4448, in _flush
+    flush_context.execute()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) table search_history has no column named search_query
+[SQL: INSERT INTO search_history (user_id, search_query, search_mode, file_type, sort_field, sort_order, page, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('153b743b-a4b4-46d4-8133-b38404531c2f', '南开大虚', 'normal', None, None, 'desc', 1, '2024-12-12 08:27:38.831384')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:38,842 - INFO - User 153b743b-a4b4-46d4-8133-b38404531c2f searched: 南开大虚, mode=normal, file_type=, page=1, IP=127.0.0.1
+2024-12-12 16:27:46,495 - ERROR - Failed to log query to database: (sqlite3.OperationalError) table search_history has no column named search_query
+[SQL: INSERT INTO search_history (user_id, search_query, search_mode, file_type, sort_field, sort_order, page, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('5fe90a27-017e-48d7-a27e-81afc36c7f0f', '南开大虚', 'normal', None, None, 'desc', 1, '2024-12-12 08:27:46.495613')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: table search_history has no column named search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 77, in log_query_to_database
+    db.session.commit()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\scoping.py", line 597, in commit
+    return self._proxied.commit()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4352, in flush
+    self._flush(objects)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4487, in _flush
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4448, in _flush
+    flush_context.execute()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) table search_history has no column named search_query
+[SQL: INSERT INTO search_history (user_id, search_query, search_mode, file_type, sort_field, sort_order, page, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('5fe90a27-017e-48d7-a27e-81afc36c7f0f', '南开大虚', 'normal', None, None, 'desc', 1, '2024-12-12 08:27:46.495613')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:46,499 - INFO - User 5fe90a27-017e-48d7-a27e-81afc36c7f0f searched: 南开大虚, mode=normal, file_type=, page=1, IP=127.0.0.1
+2024-12-12 16:27:49,855 - ERROR - Failed to log query to database: (sqlite3.OperationalError) table search_history has no column named search_query
+[SQL: INSERT INTO search_history (user_id, search_query, search_mode, file_type, sort_field, sort_order, page, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('113d4e16-2c7f-48af-8ae6-70a2d6545b5b', '南开大虚', 'normal', None, None, 'desc', 1, '2024-12-12 08:27:49.855447')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: table search_history has no column named search_query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\信息检索系统大作业\server\app.py", line 77, in log_query_to_database
+    db.session.commit()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\scoping.py", line 597, in commit
+    return self._proxied.commit()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4352, in flush
+    self._flush(objects)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4487, in _flush
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\session.py", line 4448, in _flush
+    flush_context.execute()
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\miniconda\envs\IR\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) table search_history has no column named search_query
+[SQL: INSERT INTO search_history (user_id, search_query, search_mode, file_type, sort_field, sort_order, page, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('113d4e16-2c7f-48af-8ae6-70a2d6545b5b', '南开大虚', 'normal', None, None, 'desc', 1, '2024-12-12 08:27:49.855447')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-12 16:27:49,862 - INFO - User 113d4e16-2c7f-48af-8ae6-70a2d6545b5b searched: 南开大虚, mode=normal, file_type=, page=1, IP=127.0.0.1

@@ -1,95 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>详细信息</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f9f9f9;
-        color: #333;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>详细信息</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
 
-    .container {
-        max-width: 800px;
-        margin: 40px auto;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-    }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
 
-    h1 {
-        font-size: 24px;
-        text-align: center;
-        color: #0066cc;
-        margin-bottom: 20px;
-    }
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            color: #0066cc;
+            margin-bottom: 20px;
+        }
 
-    .metadata {
-        font-size: 14px;
-        color: #666;
-        margin-bottom: 20px;
-        background-color: #f1f1f1;
-        padding: 10px;
-        border-radius: 5px;
-    }
+        .metadata {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
 
-    .metadata div {
-        margin-bottom: 5px;
-    }
+        .metadata div {
+            margin-bottom: 5px;
+        }
 
-    .content {
-        font-size: 16px;
-        line-height: 1.8;
-        margin-bottom: 20px;
-        color: #333;
-    }
+        .content {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #333;
+        }
 
-    .attachments, .contact-info {
-        margin-top: 20px;
-        padding: 15px;
-        background-color: #f1f1f1;
-        border-radius: 5px;
-    }
+        .attachments, .contact-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
 
-    .attachments h3, .contact-info h3 {
-        margin-top: 0;
-        font-size: 18px;
-        color: #0066cc;
-    }
+        .attachments h3, .contact-info h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #0066cc;
+        }
 
-    .attachments ul {
-        list-style-type: none;
-        padding: 0;
-    }
+        .attachments ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-    .attachments li {
-        margin-bottom: 8px;
-    }
+        .attachments li {
+            margin-bottom: 8px;
+        }
 
-    .attachments a {
-        color: #0066cc;
-        text-decoration: none;
-    }
+        .attachments a {
+            color: #0066cc;
+            text-decoration: none;
+        }
 
-    .attachments a:hover {
-        text-decoration: underline;
-    }
+        .attachments a:hover {
+            text-decoration: underline;
+        }
 
-    .contact-info div {
-        margin-bottom: 8px;
-    }
+        .contact-info div {
+            margin-bottom: 8px;
+        }
 
-    img {
-        max-width: 100%;
-        border-radius: 5px;
-        margin-top: 10px;
-    }
-</style>
+        img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .go-back {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #0066cc;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .go-back:hover {
+            background-color: #005ab3;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -98,6 +112,7 @@
         <div class="content" id="content"></div>
         <div class="contact-info" id="contactInfo"></div>
         <div class="attachments" id="attachments"></div>
+        <a href="index.html" class="go-back">返回搜索结果</a>
     </div>
 
     <script>
@@ -150,7 +165,7 @@
             }
             document.getElementById('metadata').innerHTML = metadataHtml;
 
-            // 显示内容
+            // 显示正文内容
             let content = data.content || "";
 
             // 删除数字前后的换行符，但保留句号（。）或感叹号（！）前的换行符
@@ -164,7 +179,6 @@
             //
             // 删除结尾标点符号（如句号、感叹号、问号）后的换行符
             content = content.replace(/([（(])(\n|\r)+/g, '$1');
-
 
             // 显示正文内容
             document.getElementById('content').innerHTML = content.replace(/\n/g, '<br>');
@@ -213,7 +227,6 @@
             }
             document.getElementById('contactInfo').innerHTML = contactHtml;
         }
-
     </script>
 </body>
 </html>
