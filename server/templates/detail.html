@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -129,11 +129,23 @@
         }
 
         // 发送请求获取详细信息
-        fetch(`http://localhost:5000/detail?url=${encodeURIComponent(docUrl)}`, {
-            method: 'GET'
+        fetch(`/api/detail?url=${encodeURIComponent(docUrl)}`, {  // 修改为 /api/detail
+            method: 'GET',
+            credentials: 'include'  // 包含会话 cookie
         })
-        .then(response => response.json())
+        .then(response => {
+            console.log(`Response status: ${response.status}`);
+            if (!response.ok) {
+                // 如果响应状态码不是 2xx，抛出错误
+                return response.json().then(errData => {
+                    console.error("Error Response Data:", errData);
+                    throw new Error(errData.error || '未知错误');
+                });
+            }
+            return response.json();
+        })
         .then(data => {
+            console.log("Detail Data Received:", data);
             if (data.error) {
                 document.getElementById('metadata').innerHTML = `<p>${data.error}</p>`;
                 return;
@@ -141,8 +153,9 @@
             displayDetail(data);
         })
         .catch(error => {
-            console.error("Error:", error);
-            document.getElementById('metadata').innerHTML = `<p>请求出现错误，请检查控制台。</p>`;
+            console.error("Error fetching detail data:", error);
+            console.error("Requested URL:", docUrl);
+            document.getElementById('metadata').innerHTML = `<p>请求出现错误: ${error.message}</p>`;
         });
 
         function displayDetail(data) {
@@ -176,7 +189,7 @@
 
             // 删除结尾标点符号（如句号、感叹号、问号）前的换行符
             content = content.replace(/(\n|\r)+([。！？.）)])/g, '$2');
-            //
+
             // 删除结尾标点符号（如句号、感叹号、问号）后的换行符
             content = content.replace(/([（(])(\n|\r)+/g, '$1');
 

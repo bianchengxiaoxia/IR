@@ -1,6 +1,6 @@
 import scrapy
 from scrapy.http import Request
-from bs4 import BeautifulSoup, NavigableString
+from bs4 import BeautifulSoup
 import os
 import json
 import re
@@ -8,15 +8,12 @@ from elasticsearch import Elasticsearch, helpers
 import networkx as nx
 import urllib3
 import hashlib
-import logging
 from urllib.parse import urlparse, urljoin
-
-# 导入必要的异常类
 from scrapy.spidermiddlewares.httperror import HttpError
 from twisted.internet.error import DNSLookupError, TimeoutError, TCPTimedOutError, ConnectionRefusedError
 
 # 定义常量
-DOMAIN_NAME = "cc.nankai.edu.cn"
+DOMAIN_NAME = "xb.nankai.edu.cn"
 
 # 禁用 SSL 警告
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -24,7 +21,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 class NankaiSpider(scrapy.Spider):
     name = "nankai_spider"
     allowed_domains = ["nankai.edu.cn"]
-    start_urls = ["https://cc.nankai.edu.cn"]
+    start_urls = ["https://xb.nankai.edu.cn"]
 
     # 爬取限制与存储目录
     max_valid_pages = 100000  # 最大有效爬取页面数量
@@ -66,15 +63,18 @@ class NankaiSpider(scrapy.Spider):
             self.log(f"Elasticsearch 连接错误: {e}")
             raise e
 
+        # 确保索引存在并且有正确的映射
+        self.ensure_index()
+
         # 初始化 NetworkX 有向图
         self.graph = nx.DiGraph()
 
-        # 存储已成功索引的URL
-        self.indexed_urls = set()
+        # 存储已成功索引的URL的unique_id
+        self.indexed_ids = set()
 
         # 初始化索引缓冲区
         self.es_bulk = []
-        self.bulk_size = 100  # 设置批量索引的大小，根据需求调整
+        self.bulk_size = 50  # 设置批量索引的大小，根据需求调整
 
         # 测试文件写入权限
         try:
@@ -86,6 +86,97 @@ class NankaiSpider(scrapy.Spider):
         except Exception as e:
             self.logger.error(f"文件写入权限验证失败: {e}")
             raise e
+
+        # 初始化 URL 到 unique_id 的映射
+        self.url_to_id = {}
+        # 如果有之前的索引，可以加载已存在的 URL 和 unique_id
+        self.load_existing_mappings()
+
+    def ensure_index(self):
+        """确保 Elasticsearch 索引存在，并设置正确的映射"""
+        if not self.es.indices.exists(index="web_pages"):
+            self.logger.info("索引 'web_pages' 不存在，正在创建...")
+            mapping = {
+                "mappings": {
+                    "properties": {
+                        "unique_id": {"type": "keyword"},
+                        "title": {"type": "text"},
+                        "url": {"type": "keyword"},
+                        "publish_time": {"type": "date", "format": "yyyy-MM-dd"},
+                        "content": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword",
+                                    "ignore_above": 256
+                                }
+                            }
+                        },
+                        "images": {"type": "keyword"},
+                        "links": {"type": "keyword"},
+                        "publisher": {"type": "keyword"},
+                        "source": {"type": "keyword"},
+                        "views": {"type": "integer"},
+                        "attachments": {
+                            "type": "nested",
+                            "properties": {
+                                "name": {"type": "text"},
+                                "url": {"type": "keyword"},
+                                "type": {"type": "keyword"}
+                            }
+                        },
+                        "contact_info": {
+                            "type": "object",
+                            "properties": {
+                                "contact_person": {"type": "text"},
+                                "phone": {"type": "text"},
+                                "email": {"type": "keyword"},
+                                "address": {"type": "text"}
+                            }
+                        },
+                        "pagerank": {"type": "float"}
+                    }
+                }
+            }
+            try:
+                self.es.indices.create(index="web_pages", body=mapping)
+                self.logger.info("索引 'web_pages' 创建成功。")
+            except Exception as e:
+                self.logger.error(f"创建索引失败: {e}")
+                raise e
+        else:
+            self.logger.info("索引 'web_pages' 已存在。")
+
+    def load_existing_mappings(self):
+        """
+        从 Elasticsearch 中加载已存在的 URL 到 unique_id 的映射。
+        这对于爬虫重新启动后保持一致性很有用。
+        """
+        try:
+            # 使用 scroll API 遍历所有文档
+            self.logger.info("加载已存在的 URL 到 unique_id 的映射...")
+            query = {
+                "_source": ["url", "unique_id"],
+                "query": {
+                    "match_all": {}
+                }
+            }
+            resp = self.es.search(index="web_pages", body=query, scroll='2m', size=1000)
+            scroll_id = resp['_scroll_id']
+            hits = resp['hits']['hits']
+            while hits:
+                for doc in hits:
+                    url = doc['_source'].get('url')
+                    unique_id = doc['_source'].get('unique_id')
+                    if url and unique_id:
+                        self.url_to_id[url] = unique_id
+                        self.indexed_ids.add(unique_id)
+                resp = self.es.scroll(scroll_id=scroll_id, scroll='2m')
+                scroll_id = resp['_scroll_id']
+                hits = resp['hits']['hits']
+            self.logger.info(f"已加载 {len(self.url_to_id)} 个 URL 到 unique_id 的映射。")
+        except Exception as e:
+            self.logger.error(f"加载已存在的 URL 到 unique_id 的映射失败: {e}")
 
     def count_saved_files(self):
         """
@@ -140,7 +231,7 @@ class NankaiSpider(scrapy.Spider):
         self.logger.info(f"正在解析: {response.url}")
 
         if response.status != 200:
-            self.logger.warning(f"Skipping {response.url} due于 status code {response.status}")
+            self.logger.warning(f"Skipping {response.url} 由于 status code {response.status}")
             self.visited_links.add(response.url)
             self.save_visited_links()
             return
@@ -191,7 +282,7 @@ class NankaiSpider(scrapy.Spider):
         publisher = "未知"
         source = "未知"
         views = None
-        publish_time = "未知"
+        publish_time = None  # 初始化为 None
 
         # 提取并移除 publisher
         pub_match = patterns["publisher"].search(content)
@@ -248,10 +339,14 @@ class NankaiSpider(scrapy.Spider):
         content = re.sub(r"\n\s*\n", "\n", content).strip()
 
         # 提取图片链接
+        # 提取图片链接
         images = []
         for img in soup.find_all("img", src=True):
             img_src = img["src"]
             img_src = response.urljoin(img_src)
+            if img_src.startswith("data:"):
+                self.logger.debug(f"跳过 data URL 图片: {img_src}")
+                continue
             images.append(img_src)
 
         # 提取附件链接
@@ -331,15 +426,17 @@ class NankaiSpider(scrapy.Spider):
 
         # 保存内容条件判断
         # 增加一个更严格的日期模式匹配
-        if re.search(r"/\d{4}/\d{2,4}/", response.url) and content:
+        if (re.search(r"/(?:\d{4}/\d{2,4}/|n/\d{1,4}|info/\d+/\d+\.htm|\?p=\d{1,4})", response.url)
+            or re.search(r"/info/\d+/\d+\.htm", response.url)) and content:
             # 生成唯一文件名以避免重复
             unique_id = hashlib.md5(response.url.encode()).hexdigest()
             file_name = os.path.join(self.save_dir, f"{safe_title}_{unique_id}.json")
             os.makedirs(os.path.dirname(file_name), exist_ok=True)
             page_data = {
+                "unique_id": unique_id,  # 新增字段
                 "title": title,
                 "url": response.url,
-                "publish_time": publish_time,
+                "publish_time": publish_time,  # 现在是标准日期字符串或 None
                 "content": content,
                 "images": images,
                 "links": self.extract_links(soup, response),
@@ -357,6 +454,9 @@ class NankaiSpider(scrapy.Spider):
 
                 # 仅在成功保存文件后才增加计数
                 self.valid_page_count += 1
+
+                # 更新 URL 到 unique_id 的映射
+                self.url_to_id[response.url] = unique_id
 
                 # 检查是否达到最大保存数量
                 if self.valid_page_count >= self.max_valid_pages:
@@ -388,8 +488,10 @@ class NankaiSpider(scrapy.Spider):
 
     def extract_links(self, soup, response):
         links = []
-        date_pattern = re.compile(r"/\d{4}/\d{2,4}/")  # 匹配 /YYYY/MM/ 或 /YYYY/MMDD/ 等
-
+        #date_pattern = re.compile(r"/(?:\d{4}/\d{2,4}/|\d{4}/\d{2}/\d{2}/|info/\d+/\d+)(?:\.htm)?$")
+        #date_pattern = re.compile(r"/(?:\d{4}/\d{2,4}/|\d{4}/\d{2}/\d{2}/|info/\d+/\d+\.htm)$")
+        # date_pattern = re.compile(r"/\d{4}/\d{2,4}/")  # 匹配 /YYYY/MM/ 或 /YYYY/MMDD/ 等
+        date_pattern = re.compile(r"/(?:\d{4}/\d{2,4}/|n/\d{2,4}|p=\d{1,4}|info/\d+/\d+\.htm|\?p=\d{1,4})")
         for a in soup.find_all("a", href=True):
             href = a["href"]
             # 将相对URL转换为绝对URL
@@ -402,6 +504,24 @@ class NankaiSpider(scrapy.Spider):
             # 排除身份验证相关的路径
             if 'idp/profile/saml2/redirect/sso' in path:
                 continue
+                # 检查链接是否包含 '.zip'
+            if '.zip' in path:
+                    # 将包含 '.zip' 的链接添加到已访问链接中以防止后续处理
+                    self.visited_links.add(href)
+                    self.logger.debug(f"跳过 .zip 链接并添加到已访问链接: {href}")
+                    continue  # 跳过此链接，不将其添加到待爬取链接列表
+
+            if '_escaped_fragment_=' in path:
+                    # 将包含 '.zip' 的链接添加到已访问链接中以防止后续处理
+                    self.visited_links.add(href)
+                    self.logger.debug(f"跳过此链接并添加到已访问链接: {href}")
+                    continue  # 跳过此链接，不将其添加到待爬取链接列表
+
+            if 'book' in path:
+                    # 将包含 '.zip' 的链接添加到已访问链接中以防止后续处理
+                    self.visited_links.add(href)
+                    self.logger.debug(f"跳过此链接并添加到已访问链接: {href}")
+                    continue  # 跳过此链接，不将其添加到待爬取链接列表
 
             # 确保域名以 'nankai.edu.cn' 结尾
             if DOMAIN_NAME in netloc:
@@ -467,13 +587,14 @@ class NankaiSpider(scrapy.Spider):
             normalized_time = f"{year}-{month}-{day}"
             return normalized_time
         else:
-            return "未知"
+            return None  # 返回 None 而不是 "未知"
 
     def index_to_elasticsearch(self, data):
         try:
+            unique_id = data["unique_id"]
             action = {
                 "_index": "web_pages",
-                "_id": data["url"],  # 使用 URL 作为唯一 ID
+                "_id": unique_id,  # 使用哈希值作为唯一 ID
                 "_source": data
             }
             self.es_bulk.append(action)
@@ -481,9 +602,11 @@ class NankaiSpider(scrapy.Spider):
 
             # 当缓冲区达到批量大小时，执行批量索引
             if len(self.es_bulk) >= self.bulk_size:
-                helpers.bulk(self.es, self.es_bulk, raise_on_error=False)
-                self.logger.info(f"批量索引成功: {len(self.es_bulk)} 个文档")
-                self.indexed_urls.update([doc["_id"] for doc in self.es_bulk])
+                success, errors = helpers.bulk(self.es, self.es_bulk, raise_on_error=False)
+                if errors:
+                    self.logger.error(f"批量索引过程中发生错误: {errors}")
+                self.logger.info(f"批量索引成功: {success} 个文档")
+                self.indexed_ids.update([doc["_id"] for doc in self.es_bulk])
                 self.es_bulk = []  # 清空缓冲区
         except Exception as e:
             self.log(f"批量索引到 Elasticsearch 失败: {e}")
@@ -500,9 +623,11 @@ class NankaiSpider(scrapy.Spider):
         # 处理剩余的缓冲区
         if self.es_bulk:
             try:
-                helpers.bulk(self.es, self.es_bulk, raise_on_error=False)
-                self.logger.info(f"批量索引成功: {len(self.es_bulk)} 个文档")
-                self.indexed_urls.update([doc["_id"] for doc in self.es_bulk])
+                success, errors = helpers.bulk(self.es, self.es_bulk, raise_on_error=False, stats_only=False)
+                if errors:
+                    self.logger.error(f"批量索引过程中发生错误: {errors}")
+                self.logger.info(f"批量索引成功: {success} 个文档")
+                self.indexed_ids.update([doc["_id"] for doc in self.es_bulk])
                 self.es_bulk = []
             except Exception as e:
                 self.log(f"批量索引到 Elasticsearch 失败: {e}")
@@ -510,14 +635,16 @@ class NankaiSpider(scrapy.Spider):
         self.log("开始计算 PageRank...")
         self.log(f"图中节点数量: {self.graph.number_of_nodes()}")
         self.log(f"图中边数量: {self.graph.number_of_edges()}")
+
         try:
             pagerank = nx.pagerank(self.graph, alpha=0.85)
             for url, rank in pagerank.items():
-                if url in self.indexed_urls:
+                unique_id = self.url_to_id.get(url)
+                if unique_id and unique_id in self.indexed_ids:
                     try:
                         self.es.update(
                             index="web_pages",
-                            id=url,
+                            id=unique_id,  # 使用 unique_id
                             body={"doc": {"pagerank": float(rank)}}
                         )
                         self.log(f"已更新 PageRank: {url} = {rank}")
@@ -528,6 +655,7 @@ class NankaiSpider(scrapy.Spider):
 
         # 检查是否所有文件都已索引
         total_files = self.count_saved_files()
-        if len(self.indexed_urls) < total_files:
-            self.log(f"警告: 有 {total_files - len(self.indexed_urls)} 个文件未成功索引到 Elasticsearch.")
+        if len(self.indexed_ids) < total_files:
+            self.log(f"警告: 有 {total_files - len(self.indexed_ids)} 个文件未成功索引到 Elasticsearch.")
             # 可选：重新尝试索引未索引的文件
+            # 这里可以实现重新读取文件并索引的逻辑

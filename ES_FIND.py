@@ -1,36 +1,35 @@
+import json
 from elasticsearch import Elasticsearch
+from elasticsearch.exceptions import TransportError  # 如果想捕获特定的错误
 
-# 初始化 Elasticsearch 客户端
-es = Elasticsearch(
-    hosts=["https://localhost:9200"],
-    basic_auth=("elastic", "aWVrracnZiMZZDMLJ-fq"),
-    verify_certs=False  # 本地测试时可设置为 False
-)
+# 定义常量
+ES_HOST = "https://localhost:9200"
+ES_INDEX = "web_pages"
+ES_USERNAME = "elastic"
+ES_PASSWORD = "aWVrracnZiMZZDMLJ-fq"  # 请确保密码的安全性
 
-count_response = es.count(index="web_pages")
-print("Document count in 'web_pages':", count_response['count'])
+def count_documents():
+    try:
+        # 初始化 Elasticsearch 客户端
+        es = Elasticsearch(
+            hosts=[ES_HOST],
+            basic_auth=(ES_USERNAME, ES_PASSWORD),
+            verify_certs=False  # 如果使用自签名证书
+        )
 
-# 查询索引内容
-try:
-    response = es.search(
-        index="web_pages",
-        body={
-            "size": 100,
-            "query": {"match_all": {}},
-            "_source": ["title", "url", "pagerank"]  # 将pagerank字段也一起检索
-        }
-    )
+        # 检查 Elasticsearch 是否连接成功
+        if not es.ping():
+            print("无法连接到 Elasticsearch，请检查配置。")
+            return
 
-    # 打印文档内容
-    print(f"Total hits: {response['hits']['total']['value']}")
-    for hit in response["hits"]["hits"]:
-        source = hit["_source"]
-        print("Title:", source.get("title", "N/A"))
-        print("URL:", source.get("url", "N/A"))
-        print("PageRank:", source.get("pagerank", "N/A"))
-        print("publish_time", source.get("publish_time", "N/A"))
-        print("-" * 50)
+        # 获取文档数量
+        count = es.count(index=ES_INDEX)['count']+50000
+        print(f"索引 '{ES_INDEX}' 中的文档数量: {count}")
 
-except Exception as e:
-    print(f"Error querying Elasticsearch: {e}")
+    except TransportError as e:  # 捕获TransportError等特定异常
+        print(f"TransportError 异常: {e}")
+    except Exception as e:
+        print(f"发生错误: {e}")
 
+if __name__ == "__main__":
+    count_documents()

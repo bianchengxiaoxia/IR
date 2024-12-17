@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>统一搜索系统</title>
+    <style>
+        /* 基本样式 */
+        body {
+            background: url('{{ url_for('static', filename='backGround.png') }}') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        h1 {
+            color: peachpuff;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin: 40px 0;
+            font-weight: bold;
+            /* 炫酷文字特效 */
+            text-shadow: 0 0 10px rgba(0,102,204,0.7), 0 0 20px rgba(0,102,204,0.4);
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        h1:hover {
+            text-shadow: 0 0 15px rgba(0,102,204,0.9), 0 0 30px rgba(0,102,204,0.6);
+            transform: scale(1.05);
+        }
+
+        h1 img {
+            vertical-align: middle;
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        h1 img:hover {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .content-layer {
+            background-color: rgba(255,255,255,0.85);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            padding: 30px;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .user-actions button {
+            padding: 8px 12px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 14px;
+        }
+
+        .user-actions button:hover {
+            background-color: #005ab3;
+        }
+
+        .user-info {
+            font-size: 14px;
+            color: peachpuff;
+        }
+        .user-info span {
+            color:peachpuff; /* 暖金色 */
+            font-weight: bold;
+        }
+
+        .user-info button {
+            margin-left: 10px;
+            padding: 6px 10px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 14px;
+        }
+
+        .user-info button:hover {
+            background-color: #ff1a1a;
+        }
+
+        /* 搜索容器样式 */
+        .search-container {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .search-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-form input, .search-form select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            flex: 1 1 auto;
+            min-width: 200px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .search-form input:focus, .search-form select:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 8px rgba(0,102,204,0.3);
+        }
+
+        .search-form button {
+            padding: 10px 20px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .search-form button:hover {
+            background-color: #005ab3;
+            box-shadow: 0 0 8px rgba(0,102,204,0.5);
+        }
+
+        #docTypeContainer {
+            display: none;
+        }
+
+        /* 历史记录下拉列表样式 */
+        .history-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: none;
+        }
+
+        .history-item {
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .history-item .history-text {
+            flex-grow: 1;
+            margin-right: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .history-item .delete-btn {
+            background: none;
+            border: none;
+            color: #ff4d4d;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .history-item .delete-btn:hover {
+            color: #ff1a1a;
+        }
+
+        /* 结果展示样式 */
+        .results {
+            margin-top: 20px;
+        }
+
+        .result-item {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .result-item:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .result-item h3 {
+            margin-top: 0;
+            color: #0066cc;
+            font-size: 18px;
+        }
+
+        .result-item .snippet {
+            color: #666;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .result-metadata {
+            font-size: 14px;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        /* 分页样式 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .pagination button, .pagination select {
+            padding: 8px 12px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            font-size: 14px;
+        }
+
+        .pagination button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .pagination select {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 6px;
+            box-shadow: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .pagination select:hover {
+            border-color: #0066cc;
+            box-shadow: 0 0 6px rgba(0,102,204,0.3);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .search-form {
+                flex-direction: column;
+            }
+
+            .search-form button {
+                width: 100%;
+            }
+
+            .pagination {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .pagination select {
+                width: 100%;
+            }
+        }
+
+        /* 快照模态窗口样式 */
+        #snapshotsModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width:100%;
+            height:100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        #snapshotsModalContent {
+            background: white;
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            max-height: 80%;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        #closeSnapshotsBtn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        #closeSnapshotsBtn:hover {
+            background-color: #ff1a1a;
+        }
+
+        .snapshot-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        .snapshot-item h3 {
+            margin: 0 0 10px 0;
+        }
+
+        .snapshot-item p {
+            margin: 5px 0;
+        }
+
+        .snapshot-item button {
+            padding: 5px 10px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .view-snapshot-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .view-snapshot-btn:hover {
+            background-color: #45a049;
+        }
+
+        .delete-snapshot-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .delete-snapshot-btn:hover {
+            background-color: #da190b;
+        }
+
+        /* 快照内容模态窗口样式（新增） */
+        #snapshotContentModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width:100%;
+            height:100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1001;
+        }
+
+        #snapshotContentModalContent {
+            background: white;
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            max-height: 80%;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        #closeSnapshotContentBtn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        #closeSnapshotContentBtn:hover {
+            background-color: #ff1a1a;
+        }
+
+        .snapshot-result-item {
+            margin-bottom: 10px;
+        }
+
+        .snapshot-result-item a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .snapshot-result-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h1><img src="{{ url_for('static', filename='mark.png') }}" alt="Logo">统一搜索系统</h1>
+            <div class="user-actions" id="userActions">
+                <!-- 动态显示登录/注册或用户信息和登出按钮 -->
+                <button id="loginBtn">登录</button>
+                <button id="registerBtn">注册</button>
+            </div>
+            <div class="user-info" id="userInfo" style="display: none;">
+                欢迎, <span id="usernameDisplay"></span>！
+                <button id="logoutBtn">登出</button>
+                <button id="snapshotsBtnUser" style="margin-left: 10px;">我的快照</button> <!-- 快照按钮 -->
+            </div>
+        </div>
+        <div class="content-layer">
+            <div class="search-container">
+                <!-- 统一的搜索表单，仅包含一个搜索输入框 -->
+                <form id="searchForm" class="search-form" autocomplete="off">
+                    <input type="text" id="searchInput" placeholder="输入搜索关键词..." required>
+
+                    <select id="searchModeSelect">
+                        <option value="normal">普通搜索</option>
+                        <option value="document">文档搜索</option>
+                        <option value="wildcard">通配查询</option>
+                        <option value="phrase">短语查询</option>
+                    </select>
+
+                    <!-- 仅在选择“文档搜索”时显示文档类型选择 -->
+                    <div id="docTypeContainer">
+                        <select id="docTypeSelect">
+                            <option value="">选择文档类型</option>
+                            <option value="doc">Word (.doc)</option>
+                            <option value="docx">Word (.docx)</option>
+                            <option value="pdf">PDF (.pdf)</option>
+                            <option value="xls">Excel (.xls)</option>
+                            <option value="xlsx">Excel (.xlsx)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">搜索</button>
+
+                    <div id="historyDropdown" class="history-dropdown"></div>
+                </form>
+            </div>
+
+            <div id="resultsContainer" class="results"></div>
+
+            <div id="paginationContainer" class="pagination" style="display:none;">
+                <button id="prevPageBtn">上一页</button>
+                <span id="pageInfo"></span>
+                <select id="pageSelect"></select>
+                <button id="nextPageBtn">下一页</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 快照模态窗口 -->
+    <div id="snapshotsModal">
+        <div id="snapshotsModalContent">
+            <h2>我的快照</h2>
+            <button id="closeSnapshotsBtn">关闭</button>
+            <div id="snapshotsList"></div>
+        </div>
+    </div>
+
+    <!-- 快照内容模态窗口（新增） -->
+    <div id="snapshotContentModal">
+        <div id="snapshotContentModalContent">
+            <h2>快照内容</h2>
+            <button id="closeSnapshotContentBtn">关闭</button>
+            <div id="snapshotResults"></div>
+        </div>
+    </div>
+
+    <script>
+        const searchModeSelect = document.getElementById('searchModeSelect');
+        const docTypeContainer = document.getElementById('docTypeContainer');
+        const searchForm = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
+        const docTypeSelect = document.getElementById('docTypeSelect');
+        const historyDropdown = document.getElementById('historyDropdown');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const paginationContainer = document.getElementById('paginationContainer');
+        const prevPageBtn = document.getElementById('prevPageBtn');
+        const nextPageBtn = document.getElementById('nextPageBtn');
+        const pageInfo = document.getElementById('pageInfo');
+        const pageSelect = document.getElementById('pageSelect');
+
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const snapshotsBtnUser = document.getElementById('snapshotsBtnUser'); // 快照按钮
+        const userActions = document.getElementById('userActions');
+        const userInfo = document.getElementById('userInfo');
+        const usernameDisplay = document.getElementById('usernameDisplay');
+
+        const snapshotsModal = document.getElementById('snapshotsModal');
+        const closeSnapshotsBtn = document.getElementById('closeSnapshotsBtn');
+        const snapshotsList = document.getElementById('snapshotsList');
+
+        const snapshotContentModal = document.getElementById('snapshotContentModal');
+        const closeSnapshotContentBtn = document.getElementById('closeSnapshotContentBtn');
+        const snapshotResults = document.getElementById('snapshotResults');
+
+        let currentSearchMode = 'normal';
+        let currentQuery = '';
+        let currentPage = 1;
+        let totalPages = 0;
+
+        // 监听搜索模式选择
+        searchModeSelect.addEventListener('change', () => {
+            currentSearchMode = searchModeSelect.value;
+            if (currentSearchMode === 'document') {
+                docTypeContainer.style.display = 'block';
+            } else {
+                docTypeContainer.style.display = 'none';
+                docTypeSelect.value = '';
+            }
+        });
+
+        // 处理搜索表单提交
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            currentQuery = searchInput.value.trim();
+            if (currentQuery === '') return;
+            currentPage = 1;
+            performSearch();
+            hideHistoryDropdown();
+        });
+
+        // 分页按钮事件
+        prevPageBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                performSearch();
+            }
+        });
+
+        nextPageBtn.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                performSearch();
+            }
+        });
+
+        pageSelect.addEventListener('change', () => {
+            const selectedPage = parseInt(pageSelect.value, 10);
+            if (!isNaN(selectedPage) && selectedPage >= 1 && selectedPage <= totalPages) {
+                currentPage = selectedPage;
+                performSearch();
+            }
+        });
+
+        // 历史记录相关
+        searchInput.addEventListener('focus', () => {
+            fetchDropdownContent();
+        });
+
+        searchInput.addEventListener('input', () => {
+           fetchDropdownContent();
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!searchForm.contains(event.target)) {
+                hideHistoryDropdown();
+            }
+        });
+
+        function fetchDropdownContent() {
+            const query = searchInput.value.trim();
+
+            if (query === '') {
+                // 如果输入为空，获取搜索历史
+                fetch('/api/query_history', {
+                    credentials: 'include'
+                })
+                .then(response => {
+                    if (response.status === 401) {
+                        historyDropdown.style.display = 'none';
+                        return [];
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    displayDropdown(data, 'history');
+                })
+                .catch(error => {
+                    console.error('获取历史记录出错:', error);
+                });
+            } else {
+                // 如果有输入，获取搜索建议
+                fetch(`/api/search_suggestions?q=${encodeURIComponent(query)}`, {
+                    credentials: 'include'
+                })
+                .then(response => {
+                    if (response.status === 401) {
+                        historyDropdown.style.display = 'none';
+                        return [];
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    displayDropdown(data, 'suggestions');
+                })
+                .catch(error => {
+                    console.error('获取搜索建议出错:', error);
+                });
+            }
+        }
+
+        function displayDropdown(data, type) {
+            historyDropdown.innerHTML = '';
+
+            if (data.length === 0) {
+                historyDropdown.style.display = 'none';
+                return;
+            }
+
+            data.forEach(entry => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+
+                if (type === 'history') {
+                    // 显示搜索历史记录
+                    const historyText = document.createElement('span');
+                    historyText.className = 'history-text';
+                    historyText.textContent = entry.query + ` (${entry.search_count})`;  // 显示搜索次数
+
+                    historyText.addEventListener('click', () => {
+                        searchInput.value = entry.query;
+                        currentQuery = entry.query;
+                        currentPage = 1;
+                        performSearch();
+                        hideDropdown();
+                    });
+
+                    // 添加删除按钮
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'delete-btn';
+                    deleteBtn.textContent = '×';
+                    deleteBtn.title = '删除';
+                    deleteBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        deleteHistoryEntry(entry.id);
+                    });
+
+                    historyItem.appendChild(historyText);
+                    historyItem.appendChild(deleteBtn);
+                } else if (type === 'suggestions') {
+                    // 显示搜索建议（包含链接）
+                    const suggestionLink = document.createElement('a');
+                    suggestionLink.className = 'history-text';  // 使用相同的样式
+                    suggestionLink.href = entry.url;
+                    suggestionLink.target = '_blank';  // 在新标签页打开链接
+                    suggestionLink.textContent = entry.title;
+
+                    // 防止点击链接触发搜索
+                    suggestionLink.addEventListener('click', (e) => {
+                        e.stopPropagation();  // 阻止事件冒泡
+                        // 这里可以选择是否触发搜索或仅导航到链接
+                        // 如果希望同时触发搜索，可以取消下面的注释
+                        searchInput.value = entry.title;
+                        currentQuery = entry.title;
+                        currentPage = 1;
+                        performSearch();
+                        hideDropdown();
+                    });
+
+                    historyItem.appendChild(suggestionLink);
+                }
+
+                historyDropdown.appendChild(historyItem);
+            });
+
+            historyDropdown.style.display = 'block';
+        }
+
+
+        function hideDropdown() {
+            historyDropdown.style.display = 'none';
+        }
+
+
+        // function fetchHistory() {
+        //     fetch('/api/query_history', {  // 使用相对路径
+        //         credentials: 'include'
+        //     })
+        //         .then(response => {
+        //             if (response.status === 401) {
+        //                 historyDropdown.style.display = 'none';
+        //                 return [];
+        //             }
+        //             return response.json();
+        //         })
+        //         .then(data => {
+        //             displayHistory(data);
+        //         })
+        //         .catch(error => {
+        //             console.error('获取历史记录出错:', error);
+        //         });
+        // }
+
+        function displayHistory(historyList) {
+            historyDropdown.innerHTML = '';
+            if (historyList.length === 0) {
+                historyDropdown.style.display = 'none';
+                return;
+            }
+
+            historyList.forEach(entry => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+
+                const historyText = document.createElement('span');
+                historyText.className = 'history-text';
+                historyText.textContent = entry.query + ` (${entry.search_count})`;  // 显示搜索次数
+
+                historyText.addEventListener('click', () => {
+                    searchInput.value = entry.query;
+                    currentQuery = entry.query;
+                    currentPage = 1;
+                    performSearch();
+                    hideHistoryDropdown();
+                });
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.textContent = '×';
+                deleteBtn.title = '删除';
+                deleteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    deleteHistoryEntry(entry.id);
+                });
+
+                historyItem.appendChild(historyText);
+                historyItem.appendChild(deleteBtn);
+                historyDropdown.appendChild(historyItem);
+            });
+
+            historyDropdown.style.display = 'block';
+        }
+
+        function hideHistoryDropdown() {
+            historyDropdown.style.display = 'none';
+        }
+
+        function deleteHistoryEntry(id) {
+            if (!confirm('确定要删除这条历史记录吗？')) return;
+            fetch('/api/delete_history', {  // 使用相对路径
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify({ id })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    fetchDropdownContent();
+                } else if (data.error) {
+                    alert('删除失败: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('删除历史记录出错:', error);
+            });
+        }
+
+        function performSearch() {
+            const query = currentQuery;
+            const url = new URL('/search', window.location.origin);
+            url.searchParams.set('query', query);
+            url.searchParams.set('page', currentPage);
+            const selectedSearchMode = searchModeSelect.value;
+
+            if (selectedSearchMode === 'wildcard') {
+                url.searchParams.set('wildcard', 'true');
+                url.searchParams.set('phrase', 'false');
+            } else if (selectedSearchMode === 'phrase') {
+                url.searchParams.set('wildcard', 'false');
+                url.searchParams.set('phrase', 'true');
+            } else {
+                url.searchParams.set('wildcard', 'false');
+                url.searchParams.set('phrase', 'false');
+            }
+
+            if (selectedSearchMode === 'document') {
+                const docType = docTypeSelect.value;
+                if (!docType) {
+                    alert('请选择文档类型');
+                    return;
+                }
+                url.searchParams.set('file_type', docType);
+            }
+
+            fetch(url.toString(), {
+                credentials: 'include'
+            })
+                .then(response => {
+                    if (response.status === 401) {
+                        alert('请先登录才能进行搜索。');
+                        window.location.href = 'login.html';
+                        return;
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data) {
+                        displayResults(data);
+                    }
+                })
+                .catch(error => {
+                    console.error('搜索出错:', error);
+                    resultsContainer.innerHTML = '<p>搜索出现错误，请稍后重试。</p>';
+                });
+        }
+
+        function min(total, number) {
+            if(total > number){
+                return number
+            }
+            return total
+        }
+
+        function displayResults(data) {
+            resultsContainer.innerHTML = '';
+            if (!data.hits || data.hits.length === 0) {
+                resultsContainer.innerHTML = '<p>没有找到匹配的结果。</p>';
+                paginationContainer.style.display = 'none';
+                return;
+            }
+
+            data.hits.forEach(hit => {
+                const resultDiv = document.createElement('div');
+                resultDiv.className = 'result-item';
+                resultDiv.addEventListener('click', () => {
+                    window.open(`detail.html?url=${encodeURIComponent(hit.url)}`, '_blank');
+                });
+
+                let titleHtml = `
+                    <h3>
+                        <a href="${hit.url}" target="_blank" onclick="event.stopPropagation();">${hit.title || '无标题'}</a>
+                    </h3>
+                `;
+                let resultContent = `${titleHtml}
+                    <p class="snippet">${hit.snippet}</p>
+                `;
+
+                if (currentSearchMode === 'document' && hit.attachments && hit.attachments.length > 0) {
+                    const attachmentsList = hit.attachments.map(att =>
+                        `<a href="${att.url}" target="_blank" onclick="event.stopPropagation();">${att.name} (${att.type})</a>`
+                    ).join(', ');
+                    resultContent += `<div class="result-metadata">相关文档: ${attachmentsList}</div>`;
+                }
+
+                resultContent += `
+                    <div class="result-metadata">
+                        ${hit.publisher ? `发布者: ${hit.publisher} | ` : ''}
+                        ${hit.publish_time ? `发布时间: ${hit.publish_time} | ` : ''}
+                        浏览量: ${hit.views || '未知'}
+                    </div>
+                `;
+
+                resultDiv.innerHTML = resultContent;
+                resultsContainer.appendChild(resultDiv);
+            });
+
+            totalPages = data.total_pages || 0;
+            pageInfo.textContent = `第 ${data.page} 页，共 ${data.total_pages} 页（共 ${min(data.total,100)} 条结果）`;
+
+            paginationContainer.style.display = data.total > 0 ? 'flex' : 'none';
+
+            prevPageBtn.disabled = currentPage <= 1;
+            nextPageBtn.disabled = currentPage >= totalPages;
+
+            pageSelect.innerHTML = '';
+            for (let i = 1; i <= Math.min(totalPages, 10); i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `第 ${i} 页`;
+                if (i === data.page) {
+                    option.selected = true;
+                }
+                pageSelect.appendChild(option);
+            }
+        }
+
+        // 快照模态窗口相关
+        snapshotsBtnUser.addEventListener('click', () => {
+            fetchSnapshots();
+            snapshotsModal.style.display = 'block';
+        });
+
+        closeSnapshotsBtn.addEventListener('click', () => {
+            snapshotsModal.style.display = 'none';
+        });
+
+        function fetchSnapshots() {
+            fetch('/api/snapshots', {
+                credentials: 'include'
+            })
+            .then(response => {
+                if (response.status === 401) {
+                    snapshotsList.innerHTML = '<p>请先登录。</p>';
+                    return;
+                }
+                return response.json();
+            })
+            .then(data => {
+                displaySnapshots(data);
+            })
+            .catch(error => {
+                console.error('获取快照出错:', error);
+                snapshotsList.innerHTML = '<p>获取快照出错，请稍后重试。</p>';
+            });
+        }
+
+        function displaySnapshots(snapshots) {
+            snapshotsList.innerHTML = '';
+            if (snapshots.length === 0) {
+                snapshotsList.innerHTML = '<p>暂无快照。</p>';
+                return;
+            }
+
+            snapshots.forEach(snap => {
+                const snapDiv = document.createElement('div');
+                snapDiv.className = 'snapshot-item';
+
+                const title = document.createElement('h3');
+                title.textContent = `搜索: ${snap.search_query}`;
+                snapDiv.appendChild(title);
+
+                const info = document.createElement('p');
+                const formattedTime = new Date(snap.timestamp).toLocaleString();
+                info.textContent = `时间: ${formattedTime}`;
+                snapDiv.appendChild(info);
+
+                const viewBtn = document.createElement('button');
+                viewBtn.textContent = '查看快照';
+                viewBtn.className = 'view-snapshot-btn';
+                viewBtn.addEventListener('click', () => {
+                    viewSnapshot(snap.id);
+                });
+                snapDiv.appendChild(viewBtn);
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = '删除快照';
+                deleteBtn.className = 'delete-snapshot-btn';
+                deleteBtn.addEventListener('click', () => {
+                    deleteSnapshot(snap.id);
+                });
+                snapDiv.appendChild(deleteBtn);
+
+                snapshotsList.appendChild(snapDiv);
+            });
+        }
+
+        function viewSnapshot(id) {
+            fetch(`/api/snapshots/${id}`, {
+                credentials: 'include'
+            })
+            .then(response => {
+                if (response.status === 404) {
+                    alert('快照未找到。');
+                    return;
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data) {
+                    displaySnapshotContent(data);
+                }
+            })
+            .catch(error => {
+                console.error('查看快照出错:', error);
+                alert('查看快照出错，请稍后重试。');
+            });
+        }
+
+        function displaySnapshotContent(snapshot) {
+            // 显示快照内容的模态窗口
+            snapshotResults.innerHTML = ''; // 清空之前的内容
+
+            const title = document.createElement('h3');
+            title.textContent = `搜索: ${snapshot.search_query}`;
+            snapshotResults.appendChild(title);
+
+            const timeInfo = document.createElement('p');
+            const formattedTime = new Date(snapshot.timestamp).toLocaleString();
+            timeInfo.textContent = `保存时间: ${formattedTime}`;
+            snapshotResults.appendChild(timeInfo);
+
+            if (snapshot.results.length === 0) {
+                const noResults = document.createElement('p');
+                noResults.textContent = '该快照没有保存任何链接。';
+                snapshotResults.appendChild(noResults);
+            } else {
+                const list = document.createElement('ul');
+                snapshot.results.forEach(link => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'snapshot-result-item';
+                    const anchor = document.createElement('a');
+                    anchor.href = link.url;
+                    anchor.textContent = link.title || '无标题';
+                    anchor.target = '_blank';
+                    listItem.appendChild(anchor);
+                    list.appendChild(listItem);
+                });
+                snapshotResults.appendChild(list);
+            }
+
+            snapshotContentModal.style.display = 'block';
+        }
+
+        function deleteSnapshot(id) {
+            if (!confirm('确定要删除这个快照吗？')) return;
+            fetch(`/api/snapshots/${id}`, {  // 使用相对路径
+                method: 'DELETE',
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    fetchSnapshots();
+                } else if (data.error) {
+                    alert('删除失败: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('删除快照出错:', error);
+            });
+        }
+
+        // 快照内容模态窗口关闭按钮
+        closeSnapshotContentBtn.addEventListener('click', () => {
+            snapshotContentModal.style.display = 'none';
+        });
+
+        // 用户登录状态管理
+        function checkLoginStatus() {
+            fetch('/api/current_user', {  // 使用相对路径
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => {
+                if (response.status === 401) {
+                    userActions.style.display = 'flex';
+                    userInfo.style.display = 'none';
+                    return;
+                }
+                return response.json();
+            })
+            .then(userData => {
+                if (userData && userData.username) {
+                    userActions.style.display = 'none';
+                    userInfo.style.display = 'block';
+                    usernameDisplay.textContent = userData.username;
+                } else {
+                    userActions.style.display = 'flex';
+                    userInfo.style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('获取当前用户信息出错:', error);
+            });
+        }
+
+        // 登录和注册按钮事件
+        loginBtn.addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+
+        registerBtn.addEventListener('click', () => {
+            window.location.href = 'register.html';
+        });
+
+        logoutBtn.addEventListener('click', () => {
+            if (!confirm('确定要登出吗？')) return;
+            fetch('/api/logout', {  // 使用相对路径
+                method: 'POST',
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    window.location.href = 'login.html';
+                } else {
+                    alert('登出失败: ' + (data.error || '未知错误'));
+                }
+            })
+            .catch(error => {
+                console.error('登出出错:', error);
+                alert('登出出现错误，请稍后重试。');
+            });
+        });
+
+        // 在页面加载时检查登录状态
+        window.onload = function() {
+            checkLoginStatus();
+        };
+    </script>
+</body>
+</html>

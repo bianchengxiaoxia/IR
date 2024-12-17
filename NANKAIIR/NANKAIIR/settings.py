@@ -21,7 +21,7 @@ ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 16
-DEPTH_LIMIT = 5 # 限制爬取深度为 3
+DEPTH_LIMIT = 8 # 限制爬取深度为 3
 # 移除504状态码，使其不再被重试
 RETRY_HTTP_CODES = [500, 503,522, 524, 408]
 
